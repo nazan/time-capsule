@@ -30,7 +30,7 @@ Note that all communication described below must be performed over SSL to protec
 ### Encryption
 
 1. Alice wants to encrypt message M with sysmetric key SK for duration T.
-2. Alice performs the encryption with a standard sysmetric key encryption algorithm giving him cipher text CT.
+2. Alice performs the encryption with a standard sysmetric key encryption algorithm giving her cipher text CT.
 3. Alice splits symetric key SK to n slices SK1,SK2..SKn.
 4. Alice asks tictoc controller node tictoc.ctrl0 for a list of n-1 reservoir nodes.
 5. Alice intercepts the list of reservoir nodes RNp where p is the index from 1 to n-1. Note that RNp is a random list of reservoir nodes.
@@ -62,5 +62,5 @@ Note that all communication described below must be performed over SSL to protec
         > ["op":2, "key_gid":xyz, "code":#SK2]
         
         which in turn will trigger step 5 to repeat until all slices of key_gid xyz is intercepted by tictoc.ctrl0 where it will be reconstituted and stored as a whole.
-6. Bob awaits while the above process completes, concluding with her intercepting the whole symetric key SK.
-7. Bob either asks abc.com to decrypt and display contents of M by sending it SK or given Bob knows how to perform the decryption algorithm Bob does the decryption herself without the need to make further calls to abc.com.
+6. Bob awaits while the above process completes, concluding with him intercepting the whole symetric key SK.
+7. Bob either asks abc.com to decrypt and display contents of M by sending it SK or given Bob knows how to perform the decryption algorithm Bob does the decryption himself without the need to make further calls to abc.com.
