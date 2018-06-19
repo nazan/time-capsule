@@ -23,7 +23,7 @@ In this particular solution, the following entities exist.
 
 2. Controller node - This type of node has 2 more features in addition to all the features of a reservoir node. Only one controller node will be included in each instance of system deployment.
     1. Acts as a registry of reservoir nodes. Responds with a random list of reservoir nodes from its registry once called upon by an end-user for such a list.
-    2. Storage of first slice of any symetric key will always be handled by the controller node. Which qualifies it to perform the second additional feature. That is, to trigger the collaborative effort to reconstitute a symetric key once the expiry time of that key is detected.
+    2. Storage of first slice of any symetric key will always be handled by the controller node. Which qualifies it to perform the second additional feature. That is, to trigger and coordintate the collaborative effort to reconstitute a symetric key once the expiry time of that key is detected. The result of the reconstitution will be collected and stored in the controller node itself.
 
 ## Encryption
 
