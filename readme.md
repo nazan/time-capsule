@@ -25,6 +25,8 @@ In this particular solution, the following entities exist.
     1. Acts as a registry of reservoir nodes. Responds with a random list of reservoir nodes from its registry once called upon by an end-user for such a list.
     2. Storage of first slice of any symetric key will always be handled by the controller node. Which qualifies it to perform the second additional feature. That is, to trigger and coordintate the collaborative effort to reconstitute a symetric key once the expiry time of that key is detected. The result of the reconstitution will be collected and stored in the controller node itself.
 
+Note that all communication described below must be performed over SSL to protect against various attack methods.
+
 ### Encryption
 
 1. Bob wants to encrypt message M with sysmetric key SK for duration T.
@@ -38,6 +40,7 @@ In this particular solution, the following entities exist.
 9. Bob makes a hash (with a standard hashing algorithm like sha256) of SKn, giving #SKn and subsequently sends the following data message to RNq-1.
     > ["op":0, "key_gid":xyz, "slice_id":n-1, "total_slices":n, "slice":SKn-1, "next_slice_wuc_code":#SKn, "expires_on":ET]
 10. Bob stores cipher text CT at a third party website abc.com along with its associated sysmetric key gid xyz (note that symetric key itself is not included, only the gid of the key).
+11. Bob discards symetric key SK.
 
 ### Decryption
 
