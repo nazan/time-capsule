@@ -4,7 +4,7 @@
 
 In the text ahead, I will refer to this application as 'tictoc' short for TIme Capsule sTOCk. Now that we have naming taken care of.. I will try to explain this as brief as possible. Idea behind this application is very simple. Perhaps, by example would be the way to go.
 
-Suppose you have a message that is best kept secret. Any message gets intercepted by a recipient eventually, otherwise there is no purpose for that message to exist in the first place. Say you have this message, but you would rather have it a secret for a certain duration of your choosing. At the expiry of that duration you would have it revealed to anyone who has some sort of reference (say a URI) to the encrypted form of the original message. An important point to note is, up until the expiry point, absolutely no one should be able to decipher, let alone read the contents of the original message. That includes the entity who runs/operates/maintains the repository of time-locked messages. In fact, this aspect of absolute secrecy is the very thing that will sell this product to potential users.
+Suppose you have a message that is best kept secret. Any message will get intercepted by one or more recipients eventually, otherwise there is no purpose for that message to exist in the first place. Say you have this message, but you would rather have it a secret for a certain duration of your choosing. At the expiry of that duration you would have it revealed to anyone who has some sort of reference (say a URI) to the encrypted form of the original message. An important point to note is, up until the expiry point, absolutely no one should be able to decipher, let alone read the contents of the original message. That includes the entity who runs/operates/maintains the repository of time-locked messages. In fact, this aspect of absolute secrecy is the very thing that will sell this product to potential users.
 
 Three obvious characteristics of the solution to the above system requirements are:
 
@@ -22,8 +22,8 @@ In this particular solution, the following entities exist.
 1. Reservor node - Works in unison with other nodes of its kind to store a symetric key which was used to encrypt an end-user message. More accurately, for a given symetric key, a single node will hold only a slice of the key. Once a reservoir node intercepts a slice of a key, it will keep that slice in its storage until it is called upon (by a controller node) to participate in the collaborative effort to reconstitute the whole key. This effort is triggered by a controller node, which is explained in more detail below. Each reservoir node has a reference to at least one controller node. It can send messages to the controller node via that reference. Each reservoir node also subscribes to the public channel 'ch0' to which the controller node may or may not broadcast a message on.
 
 2. Controller node - This type of node has 2 more features in addition to all the features of a reservoir node. Only one controller node will be included in each instance of system deployment.
-    a. Acts as a registry of reservoir nodes. Responds with a random list of reservoir nodes from its registry once called upon by an end-user for such a list.
-    b. Storage of first slice of any symetric key will always be handled by the controller node. Which qualifies it to perform the second additional feature. That is, to trigger the collaborative effort to reconstitute a symetric key once the expiry time of that key is detected.
+    1. Acts as a registry of reservoir nodes. Responds with a random list of reservoir nodes from its registry once called upon by an end-user for such a list.
+    2. Storage of first slice of any symetric key will always be handled by the controller node. Which qualifies it to perform the second additional feature. That is, to trigger the collaborative effort to reconstitute a symetric key once the expiry time of that key is detected.
 
 ## Encryption
 
@@ -48,9 +48,9 @@ In this particular solution, the following entities exist.
 4. tictoc.ctrl0 looks up its data store and given the current time is greater than value of field "expires_on" of record with gid xyz, tictoc broadcasts the following message WK on channel ch0 via the PUBSUB construct of the system.
     > ["op":2, "key_gid":xyz, "code":#SK1]
 5. Each and every reservoir node intercepts the broadcast message and performs the following.
-    a. Looks up its data store and find the record that has a matching "key_gid" of xyz.
-    b. Performs the same standard hashing algorithm (like sha256) on the value of field "slice" of the matched record resulting #SKP.
-    c. If #SK1 matches #SKP and current UTC time (as indicated by local machine) is greater than value of field "expires_on" of matched record then this reservoir node will send the following message to tictoc.ctrl0.
+    1. Looks up its data store and find the record that has a matching "key_gid" of xyz.
+    2. Performs the same standard hashing algorithm (like sha256) on the value of field "slice" of the matched record resulting #SKP.
+    3. If #SK1 matches #SKP and current UTC time (as indicated by local machine) is greater than value of field "expires_on" of matched record then this reservoir node will send the following message to tictoc.ctrl0.
         > ["op":1, "key_gid":xyz, "slice_id":1, "slice":SK1, "code":#SK2]
         > which triggers tictoc.ctrl0 to manipulate this message as follows and broadcast it to ch0.
         > ["op":2, "key_gid":xyz, "code":#SK2]
