@@ -45,9 +45,9 @@ Note that all communication described below must be performed over SSL to protec
 
 ### Decryption
 
-1. Alice wants to read contents of message M after duration T.
-2. Alice retrieves CT and xyz from abc.com.
-3. Alice asks tictoc for symetric key with gid xyz by sending the following message. This request propagates and initially hits the controller node tictoc.ctrl0.
+1. Bob wants to read contents of message M after duration T.
+2. Bob retrieves CT and xyz from abc.com.
+3. Bob asks tictoc for symetric key with gid xyz by sending the following message. This request propagates and initially hits the controller node tictoc.ctrl0.
     > ["op":1, "key_gid":xyz]
 4. tictoc.ctrl0 looks up its data store and given the current time is greater than value of field "expires_on" of record with gid xyz, tictoc broadcasts the following message WK on channel ch0 via the PUBSUB construct of the system.
     > ["op":2, "key_gid":xyz, "code":#SK1]
