@@ -56,8 +56,8 @@ Note that all communication described below must be performed over SSL to protec
     2. Performs the same standard hashing algorithm (like sha256) on the value of field "slice" of the matched record resulting #SKP.
     3. If #SK1 matches #SKP and current UTC time (as indicated by local machine) is greater than value of field "expires_on" of matched record then this reservoir node will send the following message to tictoc.ctrl0.
         > ["op":1, "key_gid":xyz, "slice_id":1, "slice":SK1, "code":#SK2]
-        > which triggers tictoc.ctrl0 to manipulate this message as follows and broadcast it to ch0.
+        which triggers tictoc.ctrl0 to manipulate this message as follows and broadcast it to ch0.
         > ["op":2, "key_gid":xyz, "code":#SK2]
-        > which in turn will trigger step 5 to repeat until all slices of key_gid xyz is intercepted by tictoc.ctrl0 where it will be reconstituted and stored as a whole.
+        which in turn will trigger step 5 to repeat until all slices of key_gid xyz is intercepted by tictoc.ctrl0 where it will be reconstituted and stored as a whole.
 6. Alice awaits while the above process completes, concluding with her intercepting the whole symetric key SK.
 7. Alice either asks abc.com to decrypt and display contents of M by sending it SK or given Alice knows how to perform the decryption algorithm Alice does the decryption herself without the need to make further calls to abc.com.
