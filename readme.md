@@ -15,7 +15,7 @@ Three obvious characteristics of the solution to the above system requirements a
 3. The storage of the unlock keys of the messages will be handled by a distributed network of computers. No single entity should hold the whole cipher text of any unlock key.
 
 
-# A viable solution
+## A solution
 
 In this particular solution, the following entities exist.
 
@@ -25,7 +25,7 @@ In this particular solution, the following entities exist.
     1. Acts as a registry of reservoir nodes. Responds with a random list of reservoir nodes from its registry once called upon by an end-user for such a list.
     2. Storage of first slice of any symetric key will always be handled by the controller node. Which qualifies it to perform the second additional feature. That is, to trigger and coordintate the collaborative effort to reconstitute a symetric key once the expiry time of that key is detected. The result of the reconstitution will be collected and stored in the controller node itself.
 
-## Encryption
+### Encryption
 
 1. Bob wants to encrypt message M with sysmetric key SK for duration T.
 2. Bob performs the encryption with a standard sysmetric key encryption algorithm giving him cipher text CT.
@@ -39,7 +39,7 @@ In this particular solution, the following entities exist.
     > ["op":0, "key_gid":xyz, "slice_id":n-1, "total_slices":n, "slice":SKn-1, "next_slice_wuc_code":#SKn, "expires_on":ET]
 10. Bob stores cipher text CT at a third party website abc.com along with its associated sysmetric key gid xyz (note that symetric key itself is not included, only the gid of the key).
 
-## Decryption
+### Decryption
 
 1. Alice wants to read contents of message M after duration T.
 2. Alice retrieves CT and xyz from abc.com.
