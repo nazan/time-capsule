@@ -39,8 +39,9 @@ Note that all communication described below must be performed over SSL to protec
 8. Bob generates expiry point by adding T to current UTC time, giving ET.
 9. Bob makes a hash (with a standard hashing algorithm like sha256) of SKn, giving #SKn and subsequently sends the following data message to RNq-1.
     > ["op":0, "key_gid":xyz, "slice_id":n-1, "total_slices":n, "slice":SKn-1, "next_slice_wuc_code":#SKn, "expires_on":ET]
-10. Bob stores cipher text CT at a third party website abc.com along with its associated sysmetric key gid xyz (note that symetric key itself is not included, only the gid of the key).
-11. Bob discards symetric key SK.
+10. Bob repeats step 9 until all slices are sent and stored at its corresponding tictoc node.
+11. Bob stores cipher text CT at a third party website abc.com along with its associated sysmetric key gid xyz (note that symetric key itself is not included, only the gid of the key).
+12. Bob discards symetric key SK.
 
 ### Decryption
 
