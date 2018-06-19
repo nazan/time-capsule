@@ -29,19 +29,19 @@ Note that all communication described below must be performed over SSL to protec
 
 ### Encryption
 
-1. Bob wants to encrypt message M with sysmetric key SK for duration T.
-2. Bob performs the encryption with a standard sysmetric key encryption algorithm giving him cipher text CT.
-3. Bob splits symetric key SK to n slices SK1,SK2..SKn.
-4. Bob asks tictoc controller node tictoc.ctrl0 for a list of n-1 reservoir nodes.
-5. Bob intercepts the list of reservoir nodes RNp where p is the index from 1 to n-1. Note that RNp is a random list of reservoir nodes.
-6. Bob prepends tictoc.ctrl0 to the list of RNp resulting RNq where q is 1 to n.
-7. Bob generates a global ID, xyz.
-8. Bob generates expiry point by adding T to current UTC time, giving ET.
-9. Bob makes a hash (with a standard hashing algorithm like sha256) of SKn, giving #SKn and subsequently sends the following data message to RNq-1.
+1. Alice wants to encrypt message M with sysmetric key SK for duration T.
+2. Alice performs the encryption with a standard sysmetric key encryption algorithm giving him cipher text CT.
+3. Alice splits symetric key SK to n slices SK1,SK2..SKn.
+4. Alice asks tictoc controller node tictoc.ctrl0 for a list of n-1 reservoir nodes.
+5. Alice intercepts the list of reservoir nodes RNp where p is the index from 1 to n-1. Note that RNp is a random list of reservoir nodes.
+6. Alice prepends tictoc.ctrl0 to the list of RNp resulting RNq where q is 1 to n.
+7. Alice generates a global ID, xyz.
+8. Alice generates expiry point by adding T to current UTC time, giving ET.
+9. Alice makes a hash (with a standard hashing algorithm like sha256) of SKn, giving #SKn and subsequently sends the following data message to RNq-1.
     > ["op":0, "key_gid":xyz, "slice_id":n-1, "total_slices":n, "slice":SKn-1, "next_slice_wuc_code":#SKn, "expires_on":ET]
-10. Bob repeats step 9 until all slices are sent and stored at its corresponding tictoc node.
-11. Bob stores cipher text CT at a third party website abc.com along with its associated sysmetric key gid xyz (note that symetric key itself is not included, only the gid of the key).
-12. Bob discards symetric key SK.
+10. Alice repeats step 9 until all slices are sent and stored at its corresponding tictoc node.
+11. Alice stores cipher text CT at a third party website abc.com along with its associated sysmetric key gid xyz (note that symetric key itself is not included, only the gid of the key).
+12. Alice discards symetric key SK.
 
 ### Decryption
 
@@ -62,5 +62,5 @@ Note that all communication described below must be performed over SSL to protec
         > ["op":2, "key_gid":xyz, "code":#SK2]
         
         which in turn will trigger step 5 to repeat until all slices of key_gid xyz is intercepted by tictoc.ctrl0 where it will be reconstituted and stored as a whole.
-6. Alice awaits while the above process completes, concluding with her intercepting the whole symetric key SK.
-7. Alice either asks abc.com to decrypt and display contents of M by sending it SK or given Alice knows how to perform the decryption algorithm Alice does the decryption herself without the need to make further calls to abc.com.
+6. Bob awaits while the above process completes, concluding with her intercepting the whole symetric key SK.
+7. Bob either asks abc.com to decrypt and display contents of M by sending it SK or given Bob knows how to perform the decryption algorithm Bob does the decryption herself without the need to make further calls to abc.com.
