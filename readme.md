@@ -12,7 +12,7 @@ Three obvious characteristics of the solution to the above system requirements a
 
 2. Storage of the message itself need not be handled by this system. This application is not of the storage variety as in Dropbox or Google Drive. This product has to do with keeping secrets for a limited period of time chosen by its users.
 
-3. The storage of the unlock keys of the messages will be handled by a distributed network of computers. No single entity should hold the whole cipher text of any unlock key.
+3. The storage of the unlock keys of the messages will be handled by a distributed network of computers. No single entity should hold the whole string of any unlock key.
 
 
 ## A solution
