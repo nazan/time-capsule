@@ -105,7 +105,7 @@ If any node in the ring of redundant nodes finds that its next is unresponsive t
 4.  R1 tells blank node:
     1.  Here's my "next next", set it as your "next".
     2.  Here's me, set it as your "previous".
-    3.  To ask your "next" to give its "next"; here's a verification code ABC.
+    3.  Ask your "next" to give its "next"; here's a verification code ABC.
 5.  Blank node sets as its "next next", whatever success response given by its "next" R3.
 6.  R1 transmits its data (includes slice and next slice wake up code) to blank node and asks to set that as its data.
 7.  R1 sets its "next" as the newly set up blank node.
