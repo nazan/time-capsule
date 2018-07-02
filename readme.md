@@ -83,8 +83,8 @@ In summary the redundancy mechanism involves copying each slice of each key to a
   - Each node will have a pointer to its "next" node.
   - Each node will have a pointer to its "next next" node.
 - Any slice of any key has the ability to make a redundant copy of itself onto another node (suggested by the controller node).
-- Each slice will reveal its next if one of 2 things satisfy.
-  - Asking node is the previous of self node.
+- Each redundant node will reveal its "next" if one of 2 things satisfy.
+  - Asking node is the "previous" of self node.
   - Or, asking node has a verification code that matches.
 
 #### Pointers table
