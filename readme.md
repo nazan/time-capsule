@@ -89,10 +89,11 @@ In summary the redundancy mechanism involves copying each slice of each key to a
 
 #### Pointers table
 
-Node | Previous | Next | Next Next
-R1 | R3 | R2 | R3
-R2 | R1 | R3 | R1
-R3 | R2 | R1 | R2
+| Node | Previous | Next | Next Next |
+| ---- | -------- | ---- | --------- |
+| R1   | R3       | R2   | R3        |
+| R2   | R1       | R3   | R1        |
+| R3   | R2       | R1   | R2        |
 
 #### Relication steps
 
