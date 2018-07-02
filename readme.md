@@ -51,6 +51,7 @@ Note that all communication described below must be performed over SSL to protec
 4.  tictoc.ctrl0 looks up its data store and given the current time is greater than value of field "expires_on" of record with gid xyz, tictoc broadcasts the following message WK on channel ch0 via the PUBSUB construct of the system.
     > ["op":2, "key_gid":xyz, "code":#SK1]
 5.  Each and every reservoir node intercepts the broadcast message and performs the following.
+
     1.  Looks up its data store and find the record that has a matching "key_gid" of xyz.
     2.  Performs the same standard hashing algorithm (like sha256) on the value of field "slice" of the matched record resulting #SKP.
     3.  If #SK1 matches #SKP and current UTC time (as indicated by local machine) is greater than value of field "expires_on" of matched record then this reservoir node will send the following message to tictoc.ctrl0.
@@ -62,6 +63,7 @@ Note that all communication described below must be performed over SSL to protec
         > ["op":2, "key_gid":xyz, "code":#SK2]
 
         which in turn will trigger step 5 to repeat until all slices of key_gid xyz is intercepted by tictoc.ctrl0 where it will be reconstituted and stored as a whole.
+
 6.  Bob awaits while the above process completes, concluding with him intercepting the whole symetric key SK.
 7.  Bob either asks abc.com to decrypt and display contents of M by sending it SK or given Bob knows how to perform the decryption algorithm Bob does the decryption himself without the need to make further calls to abc.com.
 
@@ -75,7 +77,7 @@ In summary the redundancy mechanism involves copying each slice of each key to a
 
 #### Assumptions
 
-- Two redundant copies will be made for each slice of each key. Each slice of each key would be held by 3 different nodes in total.
+- Two redundant copies will be made for each slice of each key. Each slice of each key would be held by 3 different nodes in total. For simplicity and brevity I assume 3 redundant copies although 3 is not an ideal number of copies since its crucial that each redundant node should only be aware of part of the ring formation (as opposed to the entire ring).
 - Pointers that make up the ring formation are:
   - Each node will have a pointer to its immediate previous node.
   - Each node will have a pointer to its "next" node.
