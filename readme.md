@@ -2,7 +2,7 @@
 
 ## Application overview
 
-In the text ahead, I will refer to this application as 'tictoc' short for TIme Capsule sTOCk. Now that we have naming taken care of.. I will try to explain this as brief as possible. Idea behind this application is very simple. Perhaps, by example would be the way to go.
+In the text ahead, I will refer to this application as 'tictoc' short for TIme Capsule sTOCk. I will try to explain this as brief as possible. Idea behind this application is very simple. Perhaps, by example would be the way to go.
 
 Suppose you have a message that is best kept secret. Any message will get intercepted by one or more recipients eventually, otherwise there is no purpose for that message to exist in the first place. Say you have this message, but you would rather have it a secret for a certain duration of your choosing. At the expiry of that duration you would have it revealed to anyone who has some sort of reference (say a URI) to the encrypted form of the original message. An important point to note is, up until the expiry point, absolutely no one should be able to decipher, let alone read the contents of the original message. That includes the entity who runs/operates/maintains the repository of time-locked messages. In fact, this aspect of absolute secrecy is the very thing that will sell this product to potential users.
 
